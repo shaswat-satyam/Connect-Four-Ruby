@@ -33,13 +33,14 @@ class ConnectFour
     
     @board.first.length.times do |j|
 
-    @board.length.times do |i|
+      @board.length.times do |i|
         ele = @board[i][@board.first.length - 1- j]
     if ele.nil?
         print "O"
       else
         print ele
         end
+        print " "
     
     end
     puts 
