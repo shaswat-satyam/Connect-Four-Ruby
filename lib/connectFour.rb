@@ -36,11 +36,14 @@ class ConnectFour
       @board.length.times do |i|
         ele = @board[i][@board.first.length - 1- j]
     if ele.nil?
-        print "O"
+        print "O  "
       else
-        print ele
+          if ele == 0
+            print "\u{1f534} "
+        else
+            print "\u{1f7e2} "
+          end
         end
-        print " "
     
     end
     puts 
@@ -77,12 +80,11 @@ end
     player = 0
     until hasWon(player)
       display
-      puts player.to_s + " Enter your Move" 
+      puts "Player "+ player.to_s + " Enter your Move" 
       input = gets.chomp.to_i
       newMove(input,player)
       player = (1+player)%2
     end
-    player = (player + 1)%2
   puts "Player " + player.to_s+ " has won!"
   end
 end
