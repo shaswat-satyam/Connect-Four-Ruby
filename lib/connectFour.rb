@@ -30,15 +30,19 @@ class ConnectFour
   end
 
   def display
-    6.times do |i|
-      7.times do |j|
-        if board[5-i][j].nil?
-          print 'O' 
-        else 
-          print board[5-i][j]
+    
+    @board.first.length.times do |j|
+
+    @board.length.times do |i|
+        ele = @board[i][@board.first.length - 1- j]
+    if ele.nil?
+        print "O"
+      else
+        print ele
         end
-      end
-      puts
+    
+    end
+    puts 
     end
   end
 
