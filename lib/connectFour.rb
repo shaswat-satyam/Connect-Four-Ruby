@@ -1,3 +1,4 @@
+
 class ConnectFour
   attr_accessor :board, :top
   def initialize()
@@ -52,7 +53,7 @@ class ConnectFour
   end
 
 
-  def horizontalWin(player)
+  def diagonalWin(player)
   @board.length.times do |i|
     @board[0].length.times do |j|
       4.times.all? {|k| @board[i+k][j+k] == player or @board[i-k][j-k] == player or @board[i+k][j-k] == player or @board[i-k][j+k] == player} 
@@ -66,5 +67,21 @@ end
       row.each_slice(4).to_a.any?{|sub| sub.all?{|ele| ele == player}}
     end
   end  
+
+  def game
+    player = 0
+    until hasWon(player)
+      display
+      puts player.to_s + " Enter your Move" 
+      input = gets.chomp.to_i
+      newMove(input,player)
+      player = (1+player)%2
+    end
+    player = (player + 1)%2
+  puts "Player " + player.to_s+ " has won!"
+  end
 end
 
+
+game1 = ConnectFour.new
+game1.game
