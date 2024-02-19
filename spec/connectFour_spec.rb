@@ -77,13 +77,32 @@ describe ConnectFour do
     end
   end
   describe '#hasWon' do
-    it 'checks if 0 has won' do
+    subject(:newgame){described_class.new}
+    it 'checks if vertical win has been found ' do
     newgame.newMove(0,0)
-    newgame.newMove(0,1)
-    newgame.newMove(0,2)
-    newgame.newMove(0,3)
-    expect(newgame.hasWon(0)).to be true
+    newgame.newMove(0,0)
+    newgame.newMove(0,0)
+    newgame.newMove(0,0)
+    expect(newgame.verticalWin(0)).to be true
     end
+    it 'checks if horizontal win has been found' do
+    newgame.newMove(0,0)
+    newgame.newMove(1,0)
+    newgame.newMove(2,0)
+    newgame.newMove(3,0)
+      newgame.display
+    expect(newgame.horizontalWin(0)).to be true
+    end
+    it 'check for the diagonal win' do 
+    newgame.newMove(0,0)
+    newgame.newMove(1,1)
+    newgame.newMove(1,0)
+    newgame.newMove(2,2)
+      newgame.newMove(3,3)
+    newgame.newMove(3,2)
+    newgame.newMove(3,1)
+      newgame.newMove(3,0)
+     end
     it 'checks for the winning condition  '
   end
   it 'declares who wins'

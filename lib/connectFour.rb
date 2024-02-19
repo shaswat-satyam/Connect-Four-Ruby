@@ -46,8 +46,25 @@ class ConnectFour
   end
 
   def verticalWin(player)
-    (3)
+    @board.any? do |row|
+      row.each_slice(4).to_a.any?{|sub| sub.all?{|ele| ele == player}}
+    end
   end
-  
+
+
+  def horizontalWin(player)
+  @board.length.times do |i|
+    @board[0].length.times do |j|
+      4.times.all? {|k| @board[i+k][j+k] == player or @board[i-k][j-k] == player or @board[i+k][j-k] == player or @board[i-k][j+k] == player} 
+    end
+  end
+  false
+end
+
+  def horizontalWin(player)
+    @board.transpose.any? do |row|
+      row.each_slice(4).to_a.any?{|sub| sub.all?{|ele| ele == player}}
+    end
+  end  
 end
 
