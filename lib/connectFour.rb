@@ -62,9 +62,10 @@ class ConnectFour
 
 
   def diagonalWin(player)
-  @board.length.times do |i|
+  4.times do |i|
     @board[0].length.times do |j|
-      4.times.all? {|k| @board[i+k][j+k] == player or @board[i-k][j-k] == player or @board[i+k][j-k] == player or @board[i-k][j+k] == player} 
+        puts i.to_s + " " + j.to_s
+      return true if 4.times.all? {|k| @board[i+k][j+k] == player or @board[i-k][j-k] == player or @board[i+k][j-k] == player or @board[i-k][j+k] == player} 
     end
   end
   false
@@ -78,13 +79,17 @@ end
 
   def game
     player = 0
-    until hasWon(player)
+    loop do
+      system("cls") || system("clear")
       display
-      puts "Player "+ player.to_s + " Enter your Move" 
+      puts "Player "+ player.to_s + " Enter your Move (0-5)"
       input = gets.chomp.to_i
       newMove(input,player)
+      break if hasWon(player)
       player = (1+player)%2
     end
+    system('clear')
+    display
   puts "Player " + player.to_s+ " has won!"
   end
 end
